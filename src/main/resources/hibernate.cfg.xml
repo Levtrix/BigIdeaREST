@@ -22,15 +22,15 @@
         </property>
 
         <property name = "hibernate.connection.url">
-
+            jdbc:mariadb://webdb01.gledant.nl/i356515_dbticket
         </property>
 
         <property name = "hibernate.connection.username">
-
+            dbi356515
         </property>
 
         <property name = "hibernate.connection.password">
-
+            dbi356515
         </property>
 
         <!-- Echo all executed SQL to stdout -->
@@ -38,7 +38,13 @@
 
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property> <!--create or update-->
-        <mapping class="models.User"/>
+
+        <!-- The mapping information of entities !-->
+        <mapping class="models.Company"/>
+        <mapping class="models.Customer"/>
+        <mapping class="models.Ticket"/>
+        <mapping class="models.Message"/>
+        <!-- Add remaining mapping information for users -->
 
     </session-factory>
 </hibernate-configuration>

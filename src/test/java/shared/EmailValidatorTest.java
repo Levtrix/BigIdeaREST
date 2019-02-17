@@ -24,5 +24,4 @@ public class EmailValidatorTest {
     public void TestIncorrectEmailaddress() {
         assertEquals(false, emailValidator.validateEmail(incorrectEmail));
     }
-
 }

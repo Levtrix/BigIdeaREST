@@ -34,7 +34,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>KoffieAppRESTServer.RestServer</mainClass>
+                            <mainClass>BigIdeaREST.RestServer</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
