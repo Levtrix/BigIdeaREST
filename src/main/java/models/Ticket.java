@@ -24,12 +24,15 @@ public class Ticket {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ticket_id")
     @Fetch(FetchMode.SELECT)
-    private List<Message> messages = new ArrayList<>();;
+    private List<Message> messages = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "creationdate", nullable = false)
     private Date creationDate;
+
+    @ManyToOne(optional = false)
+    private Customer customer;
 
     // Getters and setters
     public int getId() {
@@ -61,21 +64,31 @@ public class Ticket {
         this.creationDate = creationDate;
     }
 
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
 
     // Constructors
     public Ticket() {}
 
-    public Ticket(String title, String description, Date creationDate) {
+    public Ticket(String title, String description, Date creationDate, Customer customer) {
         this.title = title;
         this.description = description;
         this.creationDate = creationDate;
+        this.customer = customer;
     }
 
-    public Ticket(int id, String title, String description, Date creationDate) {
+    public Ticket(int id, String title, String description, Date creationDate, Customer customer) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.creationDate = creationDate;
+        this.customer = customer;
     }
 
     // Methods

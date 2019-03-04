@@ -8,7 +8,7 @@ import utils.GsonUtils;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("/company")
+@Path("/support/company")
 public class CompanyService {
     private static ICompanyHandler handler;
 

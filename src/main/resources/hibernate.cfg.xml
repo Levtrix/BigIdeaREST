@@ -22,7 +22,7 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:mariadb://webdb01.gledant.nl/i356515_dbticket
+            jdbc:mariadb://webdb01.gledant.nl/i356515_dbticket?autoReconnect=true
         </property>
 
         <property name = "hibernate.connection.username">

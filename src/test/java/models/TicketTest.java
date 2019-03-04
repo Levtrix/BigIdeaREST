@@ -10,10 +10,15 @@ import static org.junit.Assert.*;
 public class TicketTest {
     private Ticket ticket;
     private Date date;
+    private Customer customer;
+    private Company company;
 
     @Before
     public void TestInitialize() {
-        ticket = new Ticket(1, "Test ticket", "Test ticket om het systeem te testen", new Date());
+        company = new Company(1, "Piet's Wasmachines", "1234AB", "Wassenaarslaan 3");
+        customer = new Customer(1, "Piet", "Puk", company);
+
+        ticket = new Ticket(1, "Test ticket", "Test ticket om het systeem te testen", new Date(), customer);
         ticket.addMessage(new Message(1, "Het aanmaken van een ticket is gelukt", new Date()));
     }
 
