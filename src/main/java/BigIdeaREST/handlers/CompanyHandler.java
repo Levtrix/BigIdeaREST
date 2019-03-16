@@ -19,6 +19,9 @@ public class CompanyHandler implements ICompanyHandler {
     public CompanyHandler(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
         this.gson = new Gson();
+
+        // Lets Hibernate create a database connection during server startup
+        companyRepository.findAll();
     }
 
     @Override
