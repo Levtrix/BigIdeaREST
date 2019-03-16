@@ -99,7 +99,7 @@ public abstract class AbstractRepository<T, Id extends Serializable> implements 
         try {
             tx = session.beginTransaction();
             entity = (T) session.get(classType, id);
-            tx.commit();;
+            tx.commit();
         } catch (RuntimeException e) {
             Util.logException(e);
             if (tx != null)

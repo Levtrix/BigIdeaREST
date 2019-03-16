@@ -16,7 +16,7 @@ public class PasswordHasherTest {
 
     @Test
     public void TestPasswordHashing() {
-        assertTrue(StringUtils.isNotBlank(passwordHasher.getPasswordHash("Password")));;
+        assertTrue(StringUtils.isNotBlank(passwordHasher.getPasswordHash("Password")));
     }
 
     @Test

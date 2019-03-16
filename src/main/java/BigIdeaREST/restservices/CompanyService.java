@@ -57,7 +57,7 @@ public class CompanyService {
     @DELETE
     @Path("/delete/{id}")
     @Consumes("application/json")
-    public Response deleteDrink(@PathParam("id") int companyId) {
+    public Response deleteCompany(@PathParam("id") int companyId) {
         Reply reply = handler.deleteCompany(companyId);
 
         return Response.status(reply.getStatus().getCode()).entity(reply.getMessage()).build();

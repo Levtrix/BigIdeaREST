@@ -1,37 +1,37 @@
 package BigIdeaREST.handlers;
 
-import BigIdeaDAL.repository.CompanyRepository;
-import BigIdeaREST.response.CompanyJson;
+import BigIdeaDAL.repository.CustomerRepository;
+import BigIdeaREST.response.CustomerJson;
 import BigIdeaREST.response.ErrorJson;
 import BigIdeaREST.response.Reply;
 import BigIdeaREST.response.Status;
 import com.google.gson.Gson;
 import logging.Logger;
-import models.Company;
+import models.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyHandler implements ICompanyHandler {
-    private CompanyRepository companyRepository;
+public class CustomerHandler implements ICustomerHandler {
+    private CustomerRepository customerRepository;
     private Gson gson;
 
-    public CompanyHandler(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+    public CustomerHandler(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
         this.gson = new Gson();
     }
 
     @Override
-    public Reply getCompanies() {
+    public Reply getCustomers() {
         try {
-            //addCompanies();
-            List<CompanyJson> companyResponse = new ArrayList<>();
+            //addCustomers();
+            List<CustomerJson> customerResponse = new ArrayList<>();
 
-            for (Company c : companyRepository.findAll()) {
-                companyResponse.add(new CompanyJson(c.getId(), c.getName(), c.getPostalCode(), c.getAddress()));
+            for (Customer c : customerRepository.findAll()) {
+                customerResponse.add(new CustomerJson(c.getId(), c.getFirstName(), c.getLastName(), c.getCompany()));
             }
 
-            String json = gson.toJson(companyResponse);
+            String json = gson.toJson(customerResponse);
             return new Reply(Status.OK, json);
         } catch (Exception e) {
             Logger.getInstance().log(e);
@@ -42,11 +42,11 @@ public class CompanyHandler implements ICompanyHandler {
     }
 
     @Override
-    public Reply getCompany(int companyId) {
-        Company company = companyRepository.findOne(companyId);
+    public Reply getCustomer(int customerId) {
+        Customer customer = customerRepository.findOne(customerId);
 
-        if (company != null) {
-            String json = gson.toJson(company);
+        if (customer != null) {
+            String json = gson.toJson(customer);
 
             return new Reply(Status.OK, json);
         }
@@ -56,10 +56,10 @@ public class CompanyHandler implements ICompanyHandler {
     }
 
     @Override
-    public Reply saveCompany(Company company) {
-        Company saved = companyRepository.save(company);
+    public Reply saveCustomer(Customer customer) {
+        Customer saved = customerRepository.save(customer);
 
-        if (saved.getId() == company.getId()) {
+        if (saved.getId() == customer.getId()) {
             return new Reply(Status.OK, gson.toJson(saved));
         }
 
@@ -68,20 +68,19 @@ public class CompanyHandler implements ICompanyHandler {
     }
 
     @Override
-    public Reply deleteCompany(int companyId) {
+    public Reply deleteCustomer(int customerId) {
         try {
-            companyRepository.delete(companyId);
+            customerRepository.delete(customerId);
             ErrorJson messageJson = new ErrorJson("Deleted");
 
             return new Reply(Status.OK, gson.toJson(messageJson));
         } catch (Exception e) {
             ErrorJson errorJson = new ErrorJson("Something went wrong");
-
             return new Reply(Status.ERROR, gson.toJson(errorJson));
         }
     }
 
-    private void addCompanies() {
-        //TODO: Add test company data
+    private void addCustomers() {
+        //TODO: Add test customer data
     }
 }

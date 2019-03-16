@@ -1,9 +1,11 @@
 package BigIdeaREST;
 
 import BigIdeaDAL.repository.CompanyRepository;
-import BigIdeaREST.handlers.CompanyHandler;
-import BigIdeaREST.handlers.ICompanyHandler;
+import BigIdeaDAL.repository.CustomerRepository;
+import BigIdeaDAL.repository.TicketRepository;
+import BigIdeaREST.handlers.*;
 import BigIdeaREST.restservices.CompanyService;
+import BigIdeaREST.restservices.CustomerService;
 import logging.Logger;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.FilterHolder;
@@ -15,7 +17,7 @@ import javax.servlet.DispatcherType;
 import java.util.EnumSet;
 
 public class RestServer {
-    private static final int PORT = 8095;
+    private static final int PORT = 8096;
 
     public static void main(String[] args) {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
@@ -37,8 +39,11 @@ public class RestServer {
 
         // Creating handlers
         ICompanyHandler companyHandler = new CompanyHandler(new CompanyRepository());
+        ICustomerHandler customerHandler = new CustomerHandler(new CustomerRepository());
+        ITicketHandler ticketHandler = new TicketHandler(new TicketRepository());
 
         CompanyService.setHandler(companyHandler);
+        CustomerService.setHandler(customerHandler);
 
         // Tells the Jersey Servlet which REST service/class to load
         jerseyServlet.setInitParameter("jersey.config.server.provider.packages", "BigIdeaREST.restservices");
