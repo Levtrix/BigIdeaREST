@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "ticket_table")
 public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

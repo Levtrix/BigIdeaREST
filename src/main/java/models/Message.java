@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "message_table")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
