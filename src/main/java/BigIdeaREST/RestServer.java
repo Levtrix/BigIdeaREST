@@ -6,6 +6,7 @@ import BigIdeaDAL.repository.TicketRepository;
 import BigIdeaREST.handlers.*;
 import BigIdeaREST.restservices.CompanyService;
 import BigIdeaREST.restservices.CustomerService;
+import BigIdeaREST.restservices.TicketService;
 import logging.Logger;
 import org.eclipse.jetty.server.*;
 import org.eclipse.jetty.servlet.FilterHolder;
@@ -44,6 +45,7 @@ public class RestServer {
 
         CompanyService.setHandler(companyHandler);
         CustomerService.setHandler(customerHandler);
+        TicketService.setHandler(ticketHandler);
 
         // Tells the Jersey Servlet which REST service/class to load
         jerseyServlet.setInitParameter("jersey.config.server.provider.packages", "BigIdeaREST.restservices");
